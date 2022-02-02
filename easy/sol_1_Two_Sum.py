@@ -6,6 +6,7 @@ class Solution:
                     return [i, j]
 
 
+
 class Solution2:
     def twoSum(self, nums, target):
         d = {}

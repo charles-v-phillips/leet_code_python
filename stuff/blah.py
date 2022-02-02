@@ -1,14 +1,16 @@
-@staticmethod
-def decorator_function(original_function):
-    def wrapper_function():
-        print('we out here wrapping')
-        return original_function()
-    return wrapper_function
+def maxArea(height):
+    l, r = 0, len(height) - 1
+    max_area = 0
 
-@decorator_function
-def display():
-    print('display function ran')
+    while l < r:
+        min_height = min(height[l], height[r])
+        distance = r - l
+        area = min_height * distance
+        max_area = max(max_area, area)
+        if height[l] < height[r]:
+            l += 1
+        else:
+            r -= 1
+    return max_area
 
-# decorated_display = decorator_function(display)
-
-display()
+print(maxArea([2,3,4,5,18,17,6]))
