@@ -46,6 +46,23 @@ class Solution2:
 
 
 
+class Solution3:
+    def permute(self, nums):
+        if len(nums) == 1:
+            return [nums[:]]
+
+        rv = []
+        for i in range(len(nums)):
+            n = nums.pop(0)
+            perms = self.permute(nums)
+            for perm in perms:
+                perm.append(n)
+
+            rv.extend(perms)
+            nums.append(n)
+        return rv
+
+
 
 
 
@@ -53,7 +70,7 @@ class Solution2:
 
 
 if __name__ == '__main__':
-    l = [1,2,3,4]
-    print(Solution2().permute(l))
+    l = [1,2,3]
+    print(Solution3().permute(l))
 
 
