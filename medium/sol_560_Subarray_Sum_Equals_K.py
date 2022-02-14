@@ -53,14 +53,17 @@ class Solution3:
         d = defaultdict(int)
         running_sum = 0
         count = 0
-        d[0] = 1
-        for i in range(len(nums)):
-            running_sum += nums[i]
-            if running_sum - k in d:
-                count += d[running_sum - k]
-            d[running_sum] += 1
+        for e in nums:
+            running_sum += e
 
+            if running_sum == k:
+                count += 1
+
+            count += d[running_sum - k]
+            d[running_sum] += 1
         return count
+
+
 
 
 

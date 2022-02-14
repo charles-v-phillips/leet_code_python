@@ -3,54 +3,27 @@ from typing import Optional
 class Solution:
     @staticmethod
     def addTwoNumbers(l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
-        # pointer = rv = ListNode()
-        # q = 0
-        # while l1 and l2:
-        #     pointer.val += q
-        #     q, r = divmod(l1.val + l2.val,10)
-        #     pointer.val += r
-        #     if pointer.val == 10:
-        #         pointer.val = 0
-        #         q = 1
-        #
-        #     if not l1.next:
-        #         pointer.next = l2.next
-        #     elif not l2.next:
-        #         pointer.next = l1.next
-        #     else:
-        #         l1 = l1.next
-        #         l2 = l2.next
-        #         pointer.next = ListNode()
-        #         pointer = pointer.next
-        q = 0
-        rv = l1
-        while l1:
-            l1.val +=q
-            if l2:
+        dummy_head = ListNode()
+        p, q, curr = l1, l2, dummy_head
+        carry = 0
+        while p is not None or q is not None:
+            x = p.val if p is not None else 0
+            y = q.val if q is not None else 0
 
-                q,l1.val = divmod(l1.val + l2.val,10)
-                # q, r = divmod(l1.val + l2.val,10)
-                # l1.val += r
-                if l1.val == 10:
-                    l1.val = 0
-                    q = 1
-            else:
+            carry, value = divmod(carry + x + y, 10)
+            curr.next = ListNode(value)
+            curr = curr.next
 
-                if l1.val >= 10:
-                    q,l1.val = divmod(l1.val,10)
-                    if not l1.next and q:
-                        l1.next = ListNode()
+            p = p.next if p else p
+            q = q.next if q else q
 
-            if not l1.next:
-                l1.next = l2.next
-            elif l2:
-                l1 = l1.next
-                l2 = l2.next
-            else:
-                l1 = l1.next
+        if carry:
+            curr.next = ListNode(carry)
+
+        return dummy_head.next
 
 
-        return rv
+
 
 
 
