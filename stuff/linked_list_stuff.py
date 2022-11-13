@@ -7,7 +7,7 @@ class ListNode:
     def __str__(self):
         s = ''
         while self:
-            s += str(self.val) + ' -> '
+            s += '[' + str(self.val) + ']' + ' -> '
             self  =self.next
         s += 'None'
         return s
